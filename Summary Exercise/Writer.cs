@@ -5,7 +5,7 @@ namespace Summary_Exercise
     internal class Writer
     {
         private static DateTime _currentDateTime;
-        readonly static string _basePath = @"C:\Users\amio1\OneDrive\שולחן העבודה\Amit";
+        public static string? BasePath;
 
         /// <summary>
         /// Creates Directories according to the userInput
@@ -18,13 +18,13 @@ namespace Summary_Exercise
 
             for (int i = 0; i < userInput; i++)
             {
-                string NewDirectoryPath = $"{_basePath}_{_currentDateTime:ddMMyy}_{i}";
+                string NewDirectoryPath = $"{BasePath}_{_currentDateTime:ddMMyy}_{i}";
                 string randomName = names[RandomNumberGenerator.GetInt32(0, names.Length - 1)];
 
                 Directory.CreateDirectory(NewDirectoryPath);
                 File.WriteAllText($@"{NewDirectoryPath}\data.txt", randomName);
 
-                dictionary.Add(randomName, NewDirectoryPath);
+                dictionary.Add(NewDirectoryPath, randomName);
             }
 
             return dictionary;

@@ -14,9 +14,10 @@ internal class Program
                 "David", "Bar", "Vadim", "Roi.P", "Carolina", "Nerihya",
                 "Dor"
             };
-
+        Writer.BasePath = @"C:\Users\amite\Desktop\Amit";
         var folderPathWritenName = Writer.GenerateNamesToFiles(_ourDepartmentNames);
-        var name = Reader.GetHighestASCIIName(_ourDepartmentNames);
+        var name = Reader.GetHighestAsciiName(folderPathWritenName);
+        Reader.OpenDirectories();
 
         Console.WriteLine($"{folderPathWritenName.TryGetValue(name, out string path)} {name} ");
 
