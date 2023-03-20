@@ -14,13 +14,16 @@ internal class Program
                 "David", "Bar", "Vadim", "Roi.P", "Carolina", "Nerihya",
                 "Dor"
             };
-        Writer.BasePath = @"C:\Users\amite\Desktop\Amit";
-        var folderPathWritenName = Writer.GenerateNamesToFiles(_ourDepartmentNames);
-        var name = Reader.GetHighestAsciiName(folderPathWritenName);
-        Reader.OpenDirectories();
+        Writer.BasePath =  @"C:\Users\amite\Desktop\";
+        Writer.DirectoryName = "Amit";
+        var result = Writer.GenerateNamesToFiles(_ourDepartmentNames);
 
-        Console.WriteLine($"{folderPathWritenName.TryGetValue(name, out string path)} {name} ");
+        Reader.BasePath = @"C:\Users\amite\Desktop\";
+        Reader.DirectoryName = "Amit";
+        //Reader.PrintHighestAsciiName();
+        var highestAsciiValue  = Reader.GetHighestAsciiName(result);
 
+        Console.WriteLine(highestAsciiValue);
 
     }
 }

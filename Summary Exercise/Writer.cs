@@ -6,6 +6,8 @@ namespace Summary_Exercise
     {
         private static DateTime _currentDateTime;
         public static string? BasePath;
+        public static string? DirectoryName;
+
 
         /// <summary>
         /// Creates Directories according to the userInput
@@ -18,7 +20,7 @@ namespace Summary_Exercise
 
             for (int i = 0; i < userInput; i++)
             {
-                string NewDirectoryPath = $"{BasePath}_{_currentDateTime:ddMMyy}_{i}";
+                string NewDirectoryPath = $"{BasePath}{DirectoryName}_{_currentDateTime:ddMMyy}_{i}";
                 string randomName = names[RandomNumberGenerator.GetInt32(0, names.Length - 1)];
 
                 Directory.CreateDirectory(NewDirectoryPath);
@@ -28,6 +30,26 @@ namespace Summary_Exercise
             }
 
             return dictionary;
+        }
+
+        private static bool IsValidInput(string input, out int folderCount)
+        {
+            folderCount = 0 ;
+            if (string.IsNullOrWhiteSpace(input))
+            {
+                Console.WriteLine($"-X- {input}  **Invalid input: Can't be empty or white space!");
+                return false;
+            }
+
+            bool validInput = int.TryParse(input, out int intInput);
+            if (!validInput || intInput < 5 || intInput > 20)
+            {
+                Console.WriteLine($"Invalid input: {input}  **Input ust be a number between 5-20!");
+                return false;
+            }
+
+            folderCount = intInput;
+            return true;
         }
 
         /// <summary>
@@ -43,15 +65,11 @@ namespace Summary_Exercise
                 Console.Write("Please enter a number between 5 to 20: ");
                 var input = Console.ReadLine();
 
-                validInput = int.TryParse(input, out int foldersCount);
+                validInput = IsValidInput(input, out int foldersCount);
 
                 if (validInput)
                 {
                     dictionary = GenerateNamesToFile(foldersCount, names);
-                }
-                else
-                {
-                    Console.WriteLine($"-X- {validInput}  **Invalid input please try again!");
                 }
             } while (!validInput);
 
