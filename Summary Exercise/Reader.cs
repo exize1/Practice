@@ -1,5 +1,4 @@
-﻿using System.Reflection.PortableExecutable;
-using System.Text;
+﻿using System.Text;
 
 namespace Summary_Exercise
 {
@@ -7,6 +6,8 @@ namespace Summary_Exercise
     {
         public static string? BasePath;
         public static string? DirectoryName;
+        public static string? FileName;
+        public static string? FileType;
         public static string GetHighestAsciiName(Dictionary<string, string> someName)
         {
             var highestAsciiValue = 0;
@@ -38,9 +39,9 @@ namespace Summary_Exercise
             var directories = Directory.GetDirectories(BasePath);
             foreach (var path in directories)
             {
-                if (!path.Contains($"{BasePath}{DirectoryName}")) continue;
-             
-                var fileInfo = File.ReadAllText(path);
+                if (!path.Contains($"{BasePath}\\{DirectoryName}")) continue;
+
+                var fileInfo = File.ReadAllText($"{path}\\{FileName}.{FileType}");
                 if(fileInfo == null) continue;
 
                 var asciiValue = GetHighestAsciiName(fileInfo.ToString(), highestAsciiValue);

@@ -7,7 +7,8 @@ namespace Summary_Exercise
         private static DateTime _currentDateTime;
         public static string? BasePath;
         public static string? DirectoryName;
-
+        public static string? FileName;
+        public static string? FileType;
 
         /// <summary>
         /// Creates Directories according to the userInput
@@ -20,11 +21,11 @@ namespace Summary_Exercise
 
             for (int i = 0; i < userInput; i++)
             {
-                string NewDirectoryPath = $"{BasePath}{DirectoryName}_{_currentDateTime:ddMMyy}_{i}";
+                string NewDirectoryPath = $"{BasePath}\\{DirectoryName}_{_currentDateTime:ddMMyy}_{i}";
                 string randomName = names[RandomNumberGenerator.GetInt32(0, names.Length - 1)];
 
                 Directory.CreateDirectory(NewDirectoryPath);
-                File.WriteAllText($@"{NewDirectoryPath}\data.txt", randomName);
+                File.WriteAllText($@"{NewDirectoryPath}\{FileName}.{FileType}", randomName);
 
                 dictionary.Add(NewDirectoryPath, randomName);
             }

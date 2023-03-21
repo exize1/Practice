@@ -14,16 +14,14 @@ internal class Program
                 "David", "Bar", "Vadim", "Roi.P", "Carolina", "Nerihya",
                 "Dor"
             };
-        Writer.BasePath =  @"C:\Users\amite\Desktop\";
-        Writer.DirectoryName = "Amit";
-        var result = Writer.GenerateNamesToFiles(_ourDepartmentNames);
-
-        Reader.BasePath = @"C:\Users\amite\Desktop\";
-        Reader.DirectoryName = "Amit";
-        //Reader.PrintHighestAsciiName();
-        var highestAsciiValue  = Reader.GetHighestAsciiName(result);
-
-        Console.WriteLine(highestAsciiValue);
+        Writer.BasePath = Reader.BasePath = @"C:\Users\amio1\OneDrive\שולחן העבודה\ForExercise";
+        Writer.DirectoryName = Reader.DirectoryName = "Amit";
+        Writer.FileName = Reader.FileName =  "Data";
+        Writer.FileType = Reader.FileType = "txt";
+        
+        Writer.GenerateNamesToFiles(_ourDepartmentNames);
+        
+        Reader.PrintHighestAsciiName();
 
     }
 }
